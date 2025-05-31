@@ -1,0 +1,15 @@
+# Python venv
+.venv/
+
+# Byte-code / caches
+__pycache__/
+*.py[cod]
+
+# Environment / editor
+.env
+.vscode/
+.idea/
+
+# macOS junk
+.DS_Store
+
