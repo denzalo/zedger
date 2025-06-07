@@ -67,3 +67,21 @@ These core features are the **minimal set** that delivers the primary value prop
 - **Scalability/Infrastructure Overkill:** Avoid over-engineering the backend for massive scale in MVP. With a handful to a few hundred users expected initially, a simple setup on a modest server or cloud function is fine. Don’t invest time now in complex microservices or load balancers – those are “nice problems” to tackle once you have the user load and revenue to justify them.
 
 By cutting the above, you **maximize focus on delivering value quickly**. This disciplined scope will help avoid delays because “features keep changing” – a common startup pitfall[linkedin.com](https://www.linkedin.com/posts/muhammad-usman-khaan_an-mvp-only-takes-8-weeks-to-build-but-activity-7290200810490138624-Uc13#:~:text=roadmap%3A%20,wireframes%2C%20user%20flows%20%E2%86%92%20Plan). Post-launch, you can reassess these ideas based on user feedback and revenue, adding the most demanded ones that will drive growth or justify higher pricing.
+
+## **Competitive Analysis**
+
+### **0 – 60 Days: what moves into the core MVP**
+|Competitive gap we can seize|What we add / tweak|Why it matters right now|
+|---|---|---|
+|“Stat hole” pain – all four incumbents frustrate users who can’t import bets from unsupported books or old seasons|CSV / bulk-paste import & smart de-dupe (alongside manual entry)|This is the single-loudest Reddit/App-Store complaint against Pikkit & Juice Reel. Shipping it early gives us an immediate “aha!” win and costs < 1 dev-day if we reuse a CSV-parsing lib.|
+|Hidden or high-touch pricing (Betstamp PRO, Action Labs)|Transparent pricing page + in-app upgrade flow from day one|A flat, public starter tier ($10–15) becomes a marketing talking-point: “no sales calls, no surprises.” Implementation is a small Stripe checkout tweak, but it differentiates us at launch.|
+|Closed ecosystems (no API / export) across the board|One-click data export (CSV/JSON) and statement in docs that a public API is coming|Even a simple download button signals “your data is yours”; it costs little yet positions Zedger as developer-friendly before the full API arrives.|
+|Mobile-only rivals (Juice Reel) leave desktop sharps underserved|Responsive web UI polished for large monitors|We’re already web-first—just prioritise breakpoints & table layouts so power users feel at home on day 1.|
+
+### **After 60 Days: what stays on the backlog (but now with clearer rationale)**
+|Theme|Feature set|Competitive payoff|
+|---|---|---|
+|Programmable / open platform|Full REST/GraphQL API, webhook alerts, personal access tokens|Converts our early “data export” promise into a moat; gives quants something the big four still don’t.|
+|Multi-venue, multi-currency universe|Native Polymarket & on-chain book tracking, automatic FX/USDC accounting|None of the incumbents touch crypto or prediction markets. Capturing that whitespace lets us own the fastest-growing edge-hunting segment.|
+|Edge discovery & model marketplace|AI signal engine, curated seller storefronts with performance-fee billing|Betstamp sells picks, Action sells content—but no one offers a programmable model marketplace with rev-share. High complexity, high upside—perfect phase-two bet.|
+|Native mobile wrappers|React-Native or Capacitor shells that reuse the web app core|Purely a distribution play once product-market fit is proven; we can ship to stores rapidly because core logic already lives in the web stack.|
