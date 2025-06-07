@@ -1,6 +1,1 @@
-# at repo root
-echo "Flask==3.0.*" > requirements.txt   # add others later as needed
-
-git add requirements.txt
-git commit -m "chore: add minimal requirements.txt for Render"
-git push origin main
+Flask==3.0.*
