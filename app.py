@@ -1,5 +1,14 @@
-from flask import Flask, render_template
+from pathlib import Path
+from dotenv import load_dotenv
 import os
+from flask import Flask, render_template
+
+# Load secrets
+secret_path = Path("/etc/secrets/.env")
+if secret_path.exists():        # Render
+    load_dotenv(dotenv_path=secret_path)
+else:                            # Local dev falls back to .env in repo root
+    load_dotenv()
 
 app = Flask(__name__)
 
