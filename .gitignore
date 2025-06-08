@@ -7,9 +7,12 @@ __pycache__/
 
 # Environment / editor
 .env
+*.env.*         # .env.local, .env.prod, etc.
+!.env.example   # keep the public template tracked
 .vscode/
 .idea/
 
+
+
 # macOS junk
 .DS_Store
-
