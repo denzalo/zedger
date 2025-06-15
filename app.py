@@ -119,7 +119,6 @@ def dashboard():
     return f"Hello, {current_user.email}!  <a href='/logout'>Log out</a>"
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+    # One-time table creation now lives in init_db.py
     port = int(os.environ.get("PORT", 5000))  # Render sets PORT
     app.run(host="0.0.0.0", port=port)
