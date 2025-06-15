@@ -28,8 +28,15 @@ else:                            # Local dev falls back to .env in repo root
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "dev-secret")
+
+# Ensure the instance folder exists for SQLite storage
+os.makedirs(app.instance_path, exist_ok=True)
+
+# Default to a DB in the instance folder when DATABASE_URL is not set
+default_uri = f"sqlite:///{os.path.join(app.instance_path, 'zedger.db')}"
+
 # Normalize the database URL
-raw_uri = os.getenv("DATABASE_URL", "sqlite:///zedger.db")
+raw_uri = os.getenv("DATABASE_URL", default_uri)
 if raw_uri.startswith("postgres://"):
     raw_uri = raw_uri.replace("postgres://", "postgresql://", 1)
 app.config["SQLALCHEMY_DATABASE_URI"] = raw_uri
