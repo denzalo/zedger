@@ -28,7 +28,11 @@ else:                            # Local dev falls back to .env in repo root
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "dev-secret")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///zedger.db")
+# Normalize the database URL
+raw_uri = os.getenv("DATABASE_URL", "sqlite:///zedger.db")
+if raw_uri.startswith("postgres://"):
+    raw_uri = raw_uri.replace("postgres://", "postgresql://", 1)
+app.config["SQLALCHEMY_DATABASE_URI"] = raw_uri
 
 db.init_app(app)
 
