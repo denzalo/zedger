@@ -12,13 +12,14 @@ else:                            # Local dev falls back to .env in repo root
 
 app = Flask(__name__)
 
-
+# Forward the .com domain to the .app domain
 @app.before_request
 def enforce_primary_domain():
     if request.host and request.host.endswith("zedgerapp.com"):
         url = request.url.replace("zedgerapp.com", "zedger.app")
         return redirect(url, code=301)
 
+# Serve the index page
 @app.route("/")
 def index():
     return render_template("index.html")
