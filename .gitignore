@@ -12,7 +12,8 @@ __pycache__/
 .vscode/
 .idea/
 
-
-
 # macOS junk
 .DS_Store
+
+# Dev SQLite database
+instance/zedger.db
