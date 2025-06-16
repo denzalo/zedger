@@ -15,5 +15,8 @@ __pycache__/
 # macOS junk
 .DS_Store
 
-# Dev SQLite database
-instance/zedger.db
+# Ignore everything in the instance folder (runtime data)
+instance/*
+
+# …but keep the folder itself so new clones have it
+!instance/.gitkeep
