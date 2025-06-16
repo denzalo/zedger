@@ -87,22 +87,15 @@ def login():
     if request.method == "POST":
         email = request.form["email"].lower()
         pwd = request.form["password"]
+
         user = User.query.filter_by(email=email).first()
         if user and user.check_password(pwd):
             login_user(user)
             return redirect(url_for("dashboard"))
-        flash("Invalid credentials", "error")
-    return render_template_string(
-        """
-        <h2>Log In</h2>
-        <form method="post">
-          <input name=email type=email placeholder="Email" required><br>
-          <input name=password type=password placeholder="Password" required><br>
-          <button type=submit>Log In</button>
-        </form>
-        <a href="{{ url_for('signup') }}">Need an account? Sign up</a>
-    """
-    )
+        
+        flash("Invalid email or password", "error")
+        return redirect(url_for("login"))
+    return render_template("login.html")
 
 # --- logout -------------------------------------------------
 @app.route("/logout")
