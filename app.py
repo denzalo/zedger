@@ -68,8 +68,10 @@ def signup():
     if request.method == "POST":
         email = request.form["email"].lower()
         pwd = request.form["password"]
+        # --- duplicate-email guard
         if User.query.filter_by(email=email).first():
             flash("Email already registered", "error")
+            return redirect(url_for("signup"))
         else:
             user = User(email=email)
             user.set_password(pwd)
@@ -77,17 +79,7 @@ def signup():
             db.session.commit()
             login_user(user)
             return redirect(url_for("dashboard"))
-    return render_template_string(
-        """
-        <h2>Sign Up</h2>
-        <form method="post">
-          <input name=email type=email placeholder="Email" required><br>
-          <input name=password type=password placeholder="Password" required><br>
-          <button type=submit>Sign Up</button>
-        </form>
-        <a href="{{ url_for('login') }}">Have an account? Log in</a>
-    """
-    )
+    return render_template("signup.html")
 
 # --- login --------------------------------------------------
 @app.route("/login", methods=["GET", "POST"])
